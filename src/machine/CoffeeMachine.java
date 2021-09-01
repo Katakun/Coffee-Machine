@@ -4,28 +4,48 @@ import java.util.Scanner;
 public class CoffeeMachine {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        int water = 400;
+        int milk = 540;
+        int beans = 120;
+        int disposableCups = 9;
+        int money = 550;
 
-        System.out.println("Write how many ml of water the coffee machine has: ");
-        int waterSupply = scan.nextInt();
+        while (true) {
+            System.out.println("The coffee machine has:");
+            System.out.printf("%d ml of water", water);
+            System.out.printf("%d ml of milk", milk);
+            System.out.printf("%d g of coffee beans", beans);
+            System.out.printf("%d disposable cups", disposableCups);
+            System.out.printf("$%d of money", money);
 
-        System.out.println("Write how many ml of milk the coffee machine has: ");
-        int milkSupply = scan.nextInt();
+            System.out.println("Write action (buy, fill, take):");
+            String action = scan.nextLine();
 
-        System.out.println("Write how many grams of coffee beans the coffee machine has: ");
-        int beansSupply = scan.nextInt();
-
-        System.out.println("Write how many cups of coffee you will need: ");
-        int cupsNeed = scan.nextInt();
-
-        int cupsCanMake = howManyCups(waterSupply, milkSupply, beansSupply);
-
-        if (cupsNeed == cupsCanMake) {
-            System.out.println("Yes, I can make that amount of coffee");
-        } else if (cupsNeed > cupsCanMake) {
-            System.out.printf("No, I can make only %d cup(s) of coffee\n", cupsCanMake);
-        } else {
-            System.out.printf("Yes, I can make that amount of coffee (and even %d more than that)\n", cupsCanMake - cupsNeed);
+            switch (action) {
+                case "bue": {
+                    System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
+                    // метод покупки кофе
+                    break;
+                }
+                case "fill": {
+                    System.out.println("Write how many ml of water you want to add:");
+                    water += scan.nextInt();
+                    System.out.println("Write how many ml of milk you want to add:");
+                    milk += scan.nextInt();
+                    System.out.println("Write how many grams of coffee beans you want to add:");
+                    beans += scan.nextInt();
+                    System.out.println("Write how many disposable cups of coffee you want to add:");
+                    disposableCups += scan.nextInt();
+                    break;
+                }
+                case "take": {
+                    System.out.printf("I gave you $%d", money);
+                    money = 0;
+                     break;
+                }
+            }
         }
+
     }
 
     public static void howManyIngredients(int cupsOfCoffee) {
