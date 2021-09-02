@@ -18,11 +18,10 @@ public class CoffeeMachine {
             String action = scan.nextLine();
             switch (action) {
                 case "buy":
-                    System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
-                    int choice = scan.nextInt();
+                    System.out.println("\nWhat do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
+                    String choice = scan.nextLine();
                     switch (choice) {
-
-                        case 1:
+                        case "1":
                             if (water >= 250 && beans >= 16 && disposableCups >= 1) {
                                 System.out.println("I have enough resources, making you a coffee!");
                                 water -= 250;
@@ -30,11 +29,11 @@ public class CoffeeMachine {
                                 money += 4;
                                 disposableCups--;
                             } else {
-                                System.out.println("Sorry, not enough water!");
+                                String missingIngredient = water < 250 ? "water" : beans < 16 ? "beans" : "disposableCups";
+                                System.out.printf("Sorry, not enough %s!", missingIngredient);
                             }
                             break;
-
-                        case 2:
+                        case "2":
                             if (water >= 350 && milk >= 75 && beans >= 20 && disposableCups >= 1) {
                                 System.out.println("I have enough resources, making you a coffee!");
                                 water -= 350;
@@ -43,11 +42,11 @@ public class CoffeeMachine {
                                 money += 7;
                                 disposableCups--;
                             } else {
-                                System.out.println("Sorry, not enough water!");
+                                String missingIngredient = water < 350 ? "water" : beans < 20 ? "beans" : disposableCups < 1 ? "disposableCups" : "milk";
+                                System.out.printf("Sorry, not enough %s!", missingIngredient);
                             }
                             break;
-
-                        case 3:
+                        case "3":
                             if (water >= 200 && milk >= 100 && beans >= 12 && disposableCups >= 1) {
                                 System.out.println("I have enough resources, making you a coffee!");
                                 water -= 200;
@@ -56,7 +55,8 @@ public class CoffeeMachine {
                                 money += 6;
                                 disposableCups--;
                             } else {
-                                System.out.println("Sorry, not enough water!");
+                                String missingIngredient = water < 200 ? "water" : beans < 12 ? "beans" : disposableCups < 1 ? "disposableCups" : "milk";
+                                System.out.printf("Sorry, not enough %s!", missingIngredient);
                             }
                             break;
                     }
